@@ -44,23 +44,32 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->mapApiRoutes();
 
-        $this->mapWebRoutes();
+        $this->mapPublicRoutes();
 
-        //
+        $this->mapGuestRoutes();
+
+        $this->mapAuthRoutes();
     }
 
-    /**
-     * Define the "web" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapWebRoutes()
+    protected function mapPublicRoutes()
     {
         Route::middleware('web')
             ->namespace($this->namespace)
-            ->group(base_path('routes/web.php'));
+            ->group(base_path('routes/public.php'));
+    }
+
+    protected function mapGuestRoutes()
+    {
+        Route::middleware('web','guest')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/guest.php'));
+    }
+
+    protected function mapAuthRoutes()
+    {
+        Route::middleware('web','auth')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/auth.php'));
     }
 
     /**

@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user()->name()." ".$request->user()->email();
+    return $request->user()->firs_name()." ".$request->user()->last_name();
 });
