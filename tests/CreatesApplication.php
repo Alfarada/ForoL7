@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Post;
+use App\User;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
@@ -18,5 +20,15 @@ trait CreatesApplication
         $app->make(Kernel::class)->bootstrap();
 
         return $app;
+    }
+
+    public function defaultUser( array $attributes)
+    {
+        return $this->defaultUser = factory(User::class)->create($attributes);
+    }
+
+    public function createPost( array $attributes = [])
+    {
+        return factory(Post::class)->create($attributes);
     }
 }

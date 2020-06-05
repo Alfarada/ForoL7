@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Post;
 use Tests\FeatureTestCase;
 
 class ShowPostTest extends FeatureTestCase
@@ -11,17 +10,16 @@ class ShowPostTest extends FeatureTestCase
     function test_a_user_can_see_the_post_details()
     {
         //Having
-        $user = $this->setdefaultUser([
+        $user = $this->defaultUser([
             'first_name' => 'Alfredo',
             'last_name' => 'Yepez'
         ]);
 
-        $post = factory(Post::class)->make([
+        $post = $this->createPost([
             'title' => 'Este es el título del post',
-            'content' => 'Este es el contenido del post'
+            'content' => 'Este es el contenido del post',
+            'user_id' => $user->id
         ]);
-
-        $user->posts()->save($post);
 
         //When
         $this->visit($post->url)
@@ -30,16 +28,13 @@ class ShowPostTest extends FeatureTestCase
             ->see($post->first_name);
     }
 
+    //Comprobar que las url obsoletas redirigen a las url nuevas
     function test_old_url_are_redirected()
     {
         //Having
-        $user = $this->getdefaultUser();
-
-        $post = factory(Post::class)->make([
+        $post = $this->createPost([
             'title' => 'Old title'
         ]);
-
-        $user->posts()->save($post);
 
         $url = $post->url;
 

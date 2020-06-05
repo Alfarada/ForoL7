@@ -10,13 +10,11 @@ class PostSlugTest extends FeatureTestCase
     //Un slug es generado y guardado en la base de datos.
     function test_a_slug_is_generated_and_saved_to_the_databse()
     {
-        $user = $this->getdefaultUser();
-
-        $post = factory(Post::class)->make([
+        $post = $this->createPost([
             'title'=> 'Como instalar Laravel',
         ]);
 
-        $user->posts()->save($post);
+        //dd($post->toArray());
 
         $this->seeInDatabase('posts',[
             'slug' => 'como-instalar-laravel'

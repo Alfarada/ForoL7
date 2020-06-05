@@ -10,7 +10,7 @@ class CreatePostTest extends FeatureTestCase
     function test_a_user_create_post()
     {   
         //Having
-        $user = $this->getdefaultUser();
+        $user = $this->defaultUser([]);
         $title = 'Esta es una pregunta';
         $content = 'Este es el contenido';
 
@@ -44,7 +44,7 @@ class CreatePostTest extends FeatureTestCase
     //Creando post para validacion
     function test_create_post_for_validation()
     {
-        $user = $this->getdefaultUser();
+        $user = $this->defaultUser([]);
 
         $this->actingAs($user)
             ->visit(route('posts.create'))
