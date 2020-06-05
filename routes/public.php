@@ -24,6 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Show posts
 
-Route::get('/posts/{post}', 'PostShowController@show')
+Route::get('/posts/{post}-{slug}', 'PostShowController@show')
     ->name('posts.show')
     ->where('post', '\d+');
