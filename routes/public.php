@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Show posts
+
+Route::get('/posts/{post}', 'PostShowController@show')
+    ->name('posts.show')
+    ->where('post', '\d+');

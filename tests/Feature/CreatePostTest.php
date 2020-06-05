@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Tests\FeatureTestCase;
 
 class CreatePostTest extends FeatureTestCase
@@ -28,7 +27,7 @@ class CreatePostTest extends FeatureTestCase
             'title' => $title,
             'content' => $content,
             'pending' => true,
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         
         //Usuario es redirigido al detalle del post despues de crearlo.
@@ -42,7 +41,7 @@ class CreatePostTest extends FeatureTestCase
             ->seePageIs(route('login'));
     }
 
-    //Creando  validacion del  formulario
+    //Creando post para validacion
     function test_create_post_for_validation()
     {
         $user = $this->getdefaultUser();
