@@ -17,6 +17,8 @@ class MarkCommentAsAnswerTest extends FeatureTestCase
         ]);
 
         $comment->markAsAnswer();
+        
+        //dd($comment->answer);
 
         $this->assertTrue($comment->fresh()->answer);
         $this->assertFalse($post->fresh()->pending);
