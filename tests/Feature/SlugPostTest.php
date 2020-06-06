@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Post;
 use Tests\FeatureTestCase;
 
-class PostSlugTest extends FeatureTestCase
+class SlugPostTest extends FeatureTestCase
 {
     //Un slug es generado y guardado en la base de datos.
     function test_a_slug_is_generated_and_saved_to_the_databse()

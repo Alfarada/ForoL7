@@ -19,7 +19,6 @@ class CreatePostController extends Controller
             'content' => 'required'
         ]);
         
-        //dd($request->toArray());
         $post = new Post($request->all());
         
         auth()->user()->posts()->save($post);
