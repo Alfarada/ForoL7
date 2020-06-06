@@ -9,6 +9,8 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
     use DatabaseTransactions;
+
+    public $baseUrl = 'http://localhost';
    
 }
 
