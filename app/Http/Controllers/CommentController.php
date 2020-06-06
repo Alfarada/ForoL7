@@ -9,12 +9,7 @@ class CommentController extends Controller
 {
     public function store(Request $request,Post $post)
     {
-         $comment = new Comment([
-             'comment' => $request->get('comment'),
-             'post_id' => $post->id
-         ]);
-
-         auth()->user()->comments()->save($comment);
+         auth()->user()->comment($request->get('comment'), $post);
 
          return redirect($post->url);
     }
