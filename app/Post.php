@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {   
-    protected $guard = [];
-
     protected $fillable = ['title', 'content'];
+
+    protected $casts = [ 'pending' => 'boolean'];
 
     public function user()
     {

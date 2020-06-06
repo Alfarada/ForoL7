@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Comment;
 use App\Post;
 use App\User;
 use Faker\Generator as Faker;
@@ -34,6 +35,19 @@ $factory->define(Post::class, function (Faker $faker) {
         'title' => $faker->sentence,
         'content' => $faker->paragraph,
         'pending' => $faker->boolean(),
+        'user_id' => function () {
+            return factory(User::class)->create()->id;
+        }
+    ];
+});
+
+
+$factory->define(Comment::class, function (Faker $faker) {
+    return [
+        'comment' => $faker->paragraph,
+        'post_id' => function () {
+            return factory(User::class)->create()->id;
+        },
         'user_id' => function () {
             return factory(User::class)->create()->id;
         }
