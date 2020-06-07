@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use App\Comment;
-use Tests\FeatureTestCase;
+use Tests\TestCase;
 
-class MarkCommentAsAnswerTest extends FeatureTestCase
+class MarkCommentAsAnswerTest extends TestCase
 {   
     //Un post puede ser respondido
     function test_a_post_can_be_answered()

@@ -10,3 +10,5 @@ Route::post('posts/create', 'CreatePostController@store')->name('posts.store');
 //Comments
 
 Route::post('posts/{post}/comment', 'CommentController@store')->name('comments.store');
+
+Route::post('comments/{comment}/accept','CommentController@accept')->name('comments.accept');
