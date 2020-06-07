@@ -11,6 +11,6 @@ class CommentPolicy
 
     public function accept(User $user, Comment $comment)
     {
-        return $user->id === $comment->post->user_id;
+        return $user->owns($comment->post);
     }
 }
