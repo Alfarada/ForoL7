@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use GrahamCampbell\Markdown\Facades\Markdown;
+ 
 
 class Post extends Model
 {   
@@ -20,6 +21,11 @@ class Post extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function subscribers()
+    {
+        return $this->belongsToMany(User::class, 'subscriptions');
     }
 
     public function lastestComments()
