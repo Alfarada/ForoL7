@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Post;
 use Tests\FeatureTestCase;
 
 class CreatePostTest extends FeatureTestCase
@@ -29,9 +30,17 @@ class CreatePostTest extends FeatureTestCase
             'pending' => true,
             'user_id' => $user->id,
         ]);
+
+        $post = Post::first();
+
+        //El autor del post es suscrito automaticamente a su post
+        $this->seeInDatabase('subscriptions', [
+            'user_id' => $user->id,
+            'post_id' => $post->id
+        ]);
         
         //Usuario es redirigido al detalle del post despues de crearlo.
-        $this->see($title);
+        $this->seePageIs($post->url);
     }
 
     //Para crear un post el usuario necesita iniciar sesión
