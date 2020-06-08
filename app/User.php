@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function subscriptions()
+    {
+        return $this->belongsToMany(Post::class, 'subscriptions');
+    }
+
     public function comment($message, Post $post)
     {
         $comment = new Comment([
@@ -61,6 +66,16 @@ class User extends Authenticatable
     public function owns(Model $model)
     {
         return $this->id === $model->user_id;
+    }
+
+    public function subscribeTo(Post $post)
+    {
+        return $this->subscriptions()->attach($post);
+    }
+
+    public function isSubscribedTo(Post $post)
+    {
+        return $this->subscriptions()->where('post_id',$post->id)->count() > 0;
     }
 
 }
