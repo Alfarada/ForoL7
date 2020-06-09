@@ -1,13 +1,18 @@
 <?php
 
 namespace Tests\Feature;
+
 use Tests\FeatureTestCase;
+use Illuminate\Support\Facades\Notification;
 
 class WriteCommentTest extends FeatureTestCase
 {   
     //Usuario puede escribir un comentario
     function test_a_user_can_write_a_comment()
-    {   //Have
+    {   
+        Notification::fake();
+
+        //Have
         $post = $this->createPost();
         $user = $this->defaultUser([
             'first_name' => 'Alfredo',

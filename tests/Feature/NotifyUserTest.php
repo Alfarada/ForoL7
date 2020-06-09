@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Notification;
 
 
 class NotifyUserTest extends FeatureTestCase
-{
+{   
+    //El subscriptor recibe una notificacion cuando un post es comentado
     public function test_the_subscribers_recive_a_notification_when_post_is_commented()
     {   
         Notification::fake();
@@ -26,6 +27,7 @@ class NotifyUserTest extends FeatureTestCase
         $writer->subscribeTo($post);
 
         $comment = $writer->comment('Un comentario cualquiera',$post);
+        
 
         Notification::assertSentTo(
             $subscriber, PostCommented::class,function ($notification) use ($comment) {

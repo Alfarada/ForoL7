@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\{User, Comment};
+use App\Comment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -13,15 +13,13 @@ class PostCommented extends Notification
     use Queueable;
 
     public $comment;
-    public $commentAuthor;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(User $commentAuthor,Comment $comment)
+    public function __construct(Comment $comment)
     {
-        $this->commentAutor = $commentAuthor;
         $this->comment   = $comment;
     }
 
@@ -45,9 +43,9 @@ class PostCommented extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('Nuevo comentario en: '.$this->comment->post->title)
+            ->line($this->comment->user->first_name.' escribió un comentario en: '.$this->comment->post->title)
+            ->action('Ver post', $this->comment->post->url);
     }
 
     /**
