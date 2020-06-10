@@ -17,11 +17,16 @@ class Token extends Model
     }
 
     public static function generateFor(User $user)
-    {
-        return static::create([
-            'token' => Str::random(60),
-            'user_id' => $user->id,
-        ]);
+    {   
+        $token = new static;
+
+        $token->token = Str::random(60);
+
+        $token->user()->associate($user);
+
+        $token->save();
+
+        return $token;
     }
 
     public function sendByEmail()
