@@ -9,7 +9,7 @@ use Tests\FeatureTestCase;
 
 class PostCommentedTest extends FeatureTestCase
 {   
-    //Comprobando que se construlle un mensaje de correo
+    //Comprobando que se construye un mensaje de correo
     public function test_it_builds_a_mail_message()
     {   
         $post = factory(Post::class)->create([
