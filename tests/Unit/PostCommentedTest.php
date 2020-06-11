@@ -17,7 +17,8 @@ class PostCommentedTest extends FeatureTestCase
         ]);
 
         $author = factory(User::class)->create([
-            'first_name' => 'Alfredo'
+            'first_name' => 'Alfredo',
+            'last_name' => 'Yepez'
         ]);
 
         $comment = factory(Comment::class)->create([
@@ -40,7 +41,7 @@ class PostCommentedTest extends FeatureTestCase
         );
 
         $this->assertSame(
-            'Alfredo escribió un comentario en: Titulo del post',
+            'Alfredo Yepez escribió un comentario en: Titulo del post',
             $message->introLines[0]
         );
 

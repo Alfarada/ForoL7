@@ -102,4 +102,9 @@ class User extends Authenticatable
         return $this->subscriptions()->where('post_id',$post->id)->count() > 0;
     }
 
+    public function getNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
 }

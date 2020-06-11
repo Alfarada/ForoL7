@@ -5,7 +5,7 @@
 
     {!! $post->safe_html_content !!}
 
-    <p>{{ $post->user->first_name }}</p>
+    <p>{{ $post->user->name }}</p>
 
     {{-- Subscribirse al post --}}
 

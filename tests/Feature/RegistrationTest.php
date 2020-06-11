@@ -9,7 +9,7 @@ use Tests\FeatureTestCase;
 
 class RegistrationTest extends FeatureTestCase
 {   
-    //Uuario puede crear una cuenta
+    //Usuario puede crear una cuenta
     public function test_a_user_can_create_an_account()
     {   
         Mail::fake();
