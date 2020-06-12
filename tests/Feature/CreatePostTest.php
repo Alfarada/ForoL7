@@ -47,7 +47,7 @@ class CreatePostTest extends FeatureTestCase
     function test_creating_a_post_requires_authentication()
     {   
         $this->visit(Route('posts.create'))
-            ->seePageIs(route('login'));
+            ->seePageIs(route('token'));
     }
 
     //Creando post para validacion
