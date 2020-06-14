@@ -9,13 +9,18 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {   
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'category_id'];
 
     protected $casts = [ 'pending' => 'boolean'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 
     public function comments()

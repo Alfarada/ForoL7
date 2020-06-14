@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Category;
 use App\Comment;
 use App\Post;
 use App\User;
@@ -37,6 +38,9 @@ $factory->define(Post::class, function (Faker $faker) {
         'pending' => true,
         'user_id' => function () {
             return factory(User::class)->create()->id;
+        },
+        'category_id' => function () {
+            return factory(Category::class)->create()->id;
         }
     ];
 });
@@ -50,5 +54,14 @@ $factory->define(Comment::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(User::class)->create()->id;
         }
+    ];
+});
+
+
+$factory->define(Category::class, function (Faker $faker) {
+    $name = $faker->unique()->sentence;
+    return [
+        'name' => $name,
+        'slug' => Str::slug($name)
     ];
 });

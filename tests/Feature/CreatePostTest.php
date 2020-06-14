@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Category;
 use App\Post;
 use Tests\FeatureTestCase;
 
@@ -17,10 +18,13 @@ class CreatePostTest extends FeatureTestCase
 
         $this->actingAs($user);
 
+        $category = factory(Category::class)->create();
+
         //When
         $this->visit(Route('posts.create'))
             ->type($title, 'title')
             ->type($content, 'content')
+            ->select($category->id, 'category_id')
             ->press('Publicar');
         
         //Than
@@ -29,6 +33,8 @@ class CreatePostTest extends FeatureTestCase
             'content' => $content,
             'pending' => true,
             'user_id' => $user->id,
+            'slug' => 'esta-es-una-pregunta',
+            'category_id' => $category->id
         ]);
 
         $post = Post::first();
