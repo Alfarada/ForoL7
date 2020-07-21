@@ -14,13 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PostShowController@index')->name('posts.index');
-
-//Auth::routes(['register' => false]);
-
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Show posts
 Route::get('/posts/{post}-{slug}', 'PostShowController@show')
-    ->name('posts.show')
-    ->where('post', '\d+');
+->name('posts.show')
+->where('post', '\d+');
+
+Route::get('{category?}', 'PostShowController@index')->name('posts.index');

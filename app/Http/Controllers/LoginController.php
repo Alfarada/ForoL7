@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Token;
-use App\User;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {

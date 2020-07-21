@@ -54,4 +54,11 @@ class Post extends Model
         return Markdown::convertToHtml(e($this->content)) ;
     }
 
+    public function scopeCategory($query, Category $category)
+    {   
+        if ($category->exists) {
+            $query->where('category_id', $category->id);
+        }
+    }
+
 }

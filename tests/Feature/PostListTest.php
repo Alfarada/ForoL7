@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Category;
 use App\Post;
 use Carbon\Carbon;
 use Tests\FeatureTestCase;
@@ -20,6 +21,39 @@ class PostListTest extends FeatureTestCase
             ->see($post->title)
             ->click($post->title)
             ->seePageIs($post->url);
+    }
+
+    //Usuario puede ver el listado de posts y ver los detalles del mismo
+    function test_a_user_can_see_posts_filtered_by_category()
+    {
+        
+        $laravel = factory(Category::class)->create([
+            'name' => 'Laravel', 'slug' => 'laravel'
+        ]);
+
+        $vue = factory(Category::class)->create([
+            'name' => 'Vue.js', 'slug' => 'vue-js'
+        ]);
+
+        $laravelPost = factory(Post::class)->create([
+            'title' => 'Posts de laravel',
+            'category_id' => $laravel->id
+        ]);
+
+        $vuePost = factory(Post::class)->create([
+            'title' => 'Posts de Vue.js',
+            'category_id' => $vue->id
+        ]);
+
+        $this->visit('/')
+            ->see($laravelPost->title)
+            ->see($vuePost->title)
+            ->within('.categories', function () {
+                $this->click('Laravel');
+            })
+            ->seeInElement('h1', 'Posts de laravel')
+            ->see($laravelPost->title)
+            ->dontSee($vuePost->title);
     }
 
     //Paginacion de post

@@ -20,17 +20,7 @@ class CategoryTableSeeder extends Seeder
         Category::create([
             'name' => 'PHP',
             'slug' => 'php'
-        ]);
-
-        Category::create([
-            'name' => 'PHP',
-            'slug' => 'php'
-        ]);
-
-        Category::create([
-            'name' => 'PHP',
-            'slug' => 'php'
-        ]);
+        ]); 
         
         Category::create([
             'name' => 'JavaScript',

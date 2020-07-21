@@ -19,7 +19,5 @@ class DatabaseSeeder extends Seeder
         $this->call(PostTableSeeder::class);
 
         $this->call(CommentTableSeeder::class);
-
-
     }
 }
