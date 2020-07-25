@@ -11,9 +11,9 @@ use Laravel\BrowserKitTesting\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
-    //use DatabaseTransactions;
+    use DatabaseTransactions;
     // use DatabaseMigrations;
-    use RefreshDatabase;
+    //use RefreshDatabase;
 
     public $baseUrl = 'http://foro7.test';
    

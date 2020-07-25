@@ -3,18 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\{Post,Category};
+use Illuminate\Http\Request;
 
 class PostShowController extends Controller
 {   
-    public function index(Category $category)
+    public function index(Category $category, Request $request)
     {   
-        //dd($category);
+        $routeName = $request->route()->getName();
 
-        $posts = Post::orderBy('created_at', 'DESC')
-            ->category($category)        
+        $posts = Post::query()
+            ->scopes($this->getListScopes($category, $routeName))
+            ->latest()
             ->paginate();
 
-        $categoryItems = $this->getCategoryItems();
+        $categoryItems = $this->getCategoryItems($routeName);
 
         return view('posts.index', compact('posts','category','categoryItems'));
     }
@@ -27,13 +29,35 @@ class PostShowController extends Controller
         return view('posts.show', ['post' => $post]);
     }
 
-    protected function getCategoryItems()
+    protected function getCategoryItems(string $routeName)
     {
-        return Category::orderBy('name')->get()->map(function ($category) {
+        return Category::query()
+            ->orderBy('name')
+            ->get()
+            ->map(function ($category) use ($routeName) {
             return [
                 'title' => $category->name,
-                'full_url' => route('posts.index', $category)
+                'full_url' => route($routeName, $category)
             ];
         })->toArray();
+    }
+
+    protected function getListScopes(Category $category, string $routeName)
+    {   
+        $scopes = [];
+
+        if ($category->exists) {
+            $scopes['category'] = [$category];
+        }
+
+        if ($routeName == 'posts.pending') {
+            $scopes[] = 'pending';
+        }
+
+        if ($routeName == 'posts.completed') {
+            $scopes[] = 'completed';
+        }
+
+        return $scopes;
     }
 }
