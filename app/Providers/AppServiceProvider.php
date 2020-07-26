@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Composers\PostSidebarComposer as ComposersPostSidebarComposer;
+use Illuminate\Support\Facades\View as FacadesView;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +17,13 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Carbon::setLocale(config('app.locale'));
+
+        $this->registerViewComposers();
+    }
+
+    protected function registerViewComposers()
+    {
+        FacadesView::composer('posts.sidebar', ComposersPostSidebarComposer::class);
     }
 
     /**
