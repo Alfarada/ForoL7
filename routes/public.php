@@ -16,26 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')
+    ->name('home');
 
 //Show posts
-Route::get('/posts/{post}-{slug}', 'PostShowController@show')
-->name('posts.show')
-->where('post', '\d+');
+Route::get('/posts/{post}-{slug}', 'ShowPostController')
+    ->name('posts.show')
+    ->where('post', '\d+');
 
-Route::get('posts-completados', 'PostShowController@index')->name('posts.completed');
+Route::get('posts-pendientes/{category?}', 'ListPostController')
+    ->name('posts.pending');
 
-Route::get('posts-pendientes', 'PostShowController@index')->name('posts.pending');
+Route::get('posts-completados/{category?}', 'ListPostController')
+    ->name('posts.completed');
 
-Route::get('posts-pendientes/{category?}', [
-    'uses' => 'PostShowController@index',
-    'as' => 'posts.pending'
-]);
-
-Route::get('posts-completados/{category?}', [
-    'uses' => 'PostShowController@index',
-    'as' => 'posts.completed'
-]);
-
-
-Route::get('{category?}', 'PostShowController@index')->name('posts.index');
+Route::get('{category?}', 'ListPostController')
+    ->name('posts.index');
