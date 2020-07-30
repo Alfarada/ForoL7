@@ -21,14 +21,4 @@ trait CreatesApplication
 
         return $app;
     }
-
-    public function defaultUser( array $attributes)
-    {
-        return $this->defaultUser = factory(User::class)->create($attributes);
-    }
-
-    public function createPost( array $attributes = [])
-    {
-        return factory(Post::class)->create($attributes);
-    }
 }

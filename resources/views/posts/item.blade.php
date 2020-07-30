@@ -1,8 +1,3 @@
-{{-- <li>
-    <a href="{{ $post->url }}">
-        {{ $post->title }}
-    </a>
-</li> --}}
 
 <article>
     <h4><a href="{{ $post->url }}">{{ $post->title }}</a></h4>

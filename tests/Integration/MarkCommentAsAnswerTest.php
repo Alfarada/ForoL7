@@ -3,10 +3,13 @@
 namespace Tests\Feature;
 
 use App\Comment;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class MarkCommentAsAnswerTest extends TestCase
 {   
+    use DatabaseTransactions;
+
     //Un post puede ser respondido
     function test_a_post_can_be_answered()
     {

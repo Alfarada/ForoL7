@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')
     ->name('home');
@@ -28,6 +28,6 @@ Route::get('posts-pendientes/{category?}', 'ListPostController')
 
 Route::get('posts-completados/{category?}', 'ListPostController')
     ->name('posts.completed');
-
+    
 Route::get('{category?}', 'ListPostController')
     ->name('posts.index');

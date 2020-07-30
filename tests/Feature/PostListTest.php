@@ -2,13 +2,33 @@
 
 namespace Tests\Feature;
 
-use App\Category;
-use App\Post;
+use App\{Category, Post};
 use Carbon\Carbon;
 use Tests\FeatureTestCase;
 
 class PostListTest extends FeatureTestCase
 {   
+    //Usuario puede ver sus propios posts
+    function test_a_user_can_see_its_own_posts()
+    {   //Have
+        $user = $this->defaultUser();
+
+        $userPost = $this->createPost([
+            'title' => 'Post del usuario',
+            'user_id' => $user->id
+        ]);
+
+        $anotherUserPost = $this->createPost([
+            'title' => 'Post del otro usuario',
+        ]);
+        
+        $this->actingAs($user)
+            ->visitRoute('posts.index')
+            ->click('Mis posts')
+            ->see($userPost->title)
+            ->dontSee($anotherUserPost->title);
+    }
+
     //Un usuario puede ver los posts filtrados por categoria y por status.
     function test_a_user_can_see_posts_filtered_by_status_and_category()
     {

@@ -17,8 +17,6 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         Carbon::setLocale(config('app.locale'));
-
-        $this->registerViewComposers();
     }
 
     protected function registerViewComposers()
@@ -33,6 +31,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->registerViewComposers();
     }
 }
