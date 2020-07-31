@@ -24,7 +24,7 @@ class Vote extends Model
             ['post_id' => $post->id, 'user_id' => auth()->id()],
             ['vote' => $amount]);
 
-        $post->score = $amount;
+        $post->score = static::where(['post_id' => $post->id])->sum('vote');
         $post->save();
     }
 }

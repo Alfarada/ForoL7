@@ -6,7 +6,7 @@ use App\{Post, User};
 
 trait TestsHelper
 {
-    protected $defaultUser;
+    protected $defaultUser;    
 
     public function defaultUser(array $attributes = [])
     {
