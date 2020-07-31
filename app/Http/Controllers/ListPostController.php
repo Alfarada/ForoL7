@@ -27,19 +27,20 @@ class ListPostController extends Controller
         $scopes = [
             'posts.mine' => ['byUser' => [$request->user()]],
             'posts.pending' => ['pending'],
-            'posts.completed' =>  ['completed']
+            'posts.completed' => ['completed']
         ];
-        
+
         return $scopes[$request->route()->getName()] ?? [];
+
     }
 
     protected function getListOrder($order)
-    {
+    {   
         $orders = [
-            'recientes' => ['created_at' => 'desc'],
-            'antiguos' => ['created_at' => 'asc']
+            'recientes' => ['created_at', 'desc'],
+            'antiguos' => ['created_at', 'asc']
         ];
 
-        return $orders[$order] ?? ['created_at', 'desc'];        
+        return $orders[$order] ?? ['created_at', 'desc'];
     }
 }
