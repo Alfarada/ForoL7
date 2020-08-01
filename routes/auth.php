@@ -9,7 +9,11 @@ Route::get('posts/create', 'CreatePostController@create')
 Route::post('posts/create', 'CreatePostController@store')
     ->name('posts.store');
 
-//Comments
+// Votes
+Route::post('/posts/{post}-{slug}/vote', 'VotePostController@upvote')
+    ->where('post', '\d+');
+
+// Comments
 Route::post('posts/{post}/comment', 'CommentController@store')
     ->name('comments.store');
 

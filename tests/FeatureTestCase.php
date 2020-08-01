@@ -2,8 +2,15 @@
 
 namespace Tests;
 
-class FeatureTestCase extends TestCase
-{
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+class FeatureTestCase extends \Laravel\BrowserKitTesting\TestCase
+{   
+    use  CreatesApplication, TestsHelper, DatabaseTransactions;
+
+    public $baseUrl = 'http://foro7.test';
+
     public function seeErrors(array $fields)
     {
         foreach ($fields as $name => $errors) {

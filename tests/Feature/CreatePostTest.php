@@ -2,8 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Category;
-use App\Post;
+use App\{Category, Post};
 use Tests\FeatureTestCase;
 
 class CreatePostTest extends FeatureTestCase

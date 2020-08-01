@@ -2,12 +2,9 @@
 
 use App\Vote;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class APostCanBeVotedTest  extends TestCase
 {
-    use DatabaseTransactions;
-
     //Usuario puede sumar un voto 
     function test_a_user_can_be_upvoted()
     {
@@ -19,8 +16,7 @@ class APostCanBeVotedTest  extends TestCase
 
         Vote::upvote($post);
 
-        //$this->assertDatabaseHas(); new version 5.4
-        $this->seeInDatabase('votes', [
+        $this->assertDatabaseHas('votes', [
             'post_id' => $post->id,
             'user_id' => $user->id,
             'vote' => 1
@@ -57,7 +53,7 @@ class APostCanBeVotedTest  extends TestCase
         Vote::downvote($post);
 
         //$this->assertDatabaseHas(); new version 5.4
-        $this->seeInDatabase('votes', [
+        $this->assertDatabaseHas('votes', [
             'post_id' => $post->id,
             'user_id' => $user->id,
             'vote' => -1
@@ -154,7 +150,7 @@ class APostCanBeVotedTest  extends TestCase
 
         Vote::undoVote($post);
 
-        $this->dontSeeInDatabase('votes',[
+        $this->assertDatabaseMissing('votes',[
             'post_id' => $post->id,
             'user_id' => $user->id,
             'vote' => 1

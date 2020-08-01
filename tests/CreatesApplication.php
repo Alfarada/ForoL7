@@ -1,9 +1,6 @@
 <?php
 
 namespace Tests;
-
-use App\Post;
-use App\User;
 use Illuminate\Contracts\Console\Kernel;
 
 trait CreatesApplication
