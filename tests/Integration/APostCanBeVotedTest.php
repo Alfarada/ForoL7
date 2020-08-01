@@ -52,7 +52,6 @@ class APostCanBeVotedTest  extends TestCase
 
         Vote::downvote($post);
 
-        //$this->assertDatabaseHas(); new version 5.4
         $this->assertDatabaseHas('votes', [
             'post_id' => $post->id,
             'user_id' => $user->id,
@@ -65,7 +64,6 @@ class APostCanBeVotedTest  extends TestCase
     //Usuario no puede restar votos por el mismo post dos veces
     function test_a_user_cannot_be_downvoted_twice_by_the_same_user()
     {
- 
         $user = $this->defaultUser();
 
         $this->actingAs($user);
@@ -140,6 +138,7 @@ class APostCanBeVotedTest  extends TestCase
         $this->assertSame(2, $post->score);
     }
 
+    //Un post puede ser desmarcado
     function test_a_post_can_be_unvoted()
     {
         $this->actingAs($user = $this->defaultUser());
