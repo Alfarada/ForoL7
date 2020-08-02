@@ -1,6 +1,6 @@
 <?php
 
-use App\{Vote,VoteRepository};
+use App\Vote;
 use Tests\TestCase;
 
 class APostCanBeVotedTest  extends TestCase
@@ -14,7 +14,7 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
         $this->assertDatabaseHas('votes', [
             'post_id' => $post->id,
@@ -34,10 +34,10 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
-        app(VoteRepository::class)->upvote($post);
-
+        $post->upvote();
+        
         $this->assertSame(1, Vote::count());
 
         $this->assertSame(1, $post->score);
@@ -50,7 +50,7 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->downvote($post);
+        $post->downvote();
 
         $this->assertDatabaseHas('votes', [
             'post_id' => $post->id,
@@ -70,9 +70,9 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->downvote($post);
-
-        app(VoteRepository::class)->downvote($post);
+        $post->downvote();
+        
+        $post->downvote();
 
         $this->assertSame(1, Vote::count());
 
@@ -88,9 +88,9 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
-        app(VoteRepository::class)->downvote($post);
+        $post->downvote();
 
         $this->assertSame(1, Vote::count());
 
@@ -106,9 +106,9 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->downvote($post);
+        $post->downvote();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
         $this->assertSame(1, Vote::count());
 
@@ -131,7 +131,7 @@ class APostCanBeVotedTest  extends TestCase
             'vote' => 1
         ]);
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
         $this->assertSame(2, Vote::count());
 
@@ -145,9 +145,9 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        app(VoteRepository::class)->upvote($post);
+        $post->upvote();
 
-        app(VoteRepository::class)->undoVote($post);
+        $post->undoVote();
 
         $this->assertDatabaseMissing('votes',[
             'post_id' => $post->id,

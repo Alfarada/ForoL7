@@ -2,13 +2,15 @@
 
 namespace App;
 
+use App\CanBeVoted;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use GrahamCampbell\Markdown\Facades\Markdown;
  
-
 class Post extends Model
 {   
+    use CanBeVoted;
+
     protected $fillable = ['title', 'content', 'category_id'];
 
     protected $casts = [ 'pending' => 'boolean', 'score' => 'integer'];
