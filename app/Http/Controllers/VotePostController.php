@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Post,Vote};
+use App\{Post};
 
 class VotePostController extends Controller
 {
@@ -29,7 +29,7 @@ class VotePostController extends Controller
     function undoVote(Post $post)
     {   
         $post->undoVote();
-        
+
         return [
             'new_score' => $post->score
         ];

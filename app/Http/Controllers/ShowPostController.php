@@ -11,6 +11,7 @@ class ShowPostController extends Controller
         if ($post->slug != $slug) {
             return redirect($post->url, 301);
         }
+            
         return view('posts.show', ['post' => $post]);
     }
 }
