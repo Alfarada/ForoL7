@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class FeatureTestCase extends \Laravel\BrowserKitTesting\TestCase
 {   
-    use  CreatesApplication, TestsHelper, DatabaseTransactions;
+    use  CreatesApplication, TestsHelper, RefreshDatabase;
 
     public $baseUrl = 'http://foro7.test';
 

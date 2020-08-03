@@ -56,7 +56,7 @@ class Token extends Model
     }
 
     public function getUrlAttribute()
-    {
+    {   
         return route('login', ['token' => $this->token]);
     }
 }

@@ -37,8 +37,6 @@ class TokenMailTest extends FeatureTestCase
         Mail::send($mailable); 
 
         $message = $transport->messages()->first();
-
-        //dd(get_class($message)); dd($message->getBody());
         
         $this->crawler = new Crawler($message->getBody());
 
