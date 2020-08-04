@@ -1956,27 +1956,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["score", "vote"],
   data: function data() {
     return {
-      currentVote: this.vote,
-      currentScore: this.score
+      currentVote: this.vote ? parseInt(this.vote) : null,
+      currentScore: parseInt(this.score)
     };
   },
   methods: {
     upvote: function upvote() {
-      if (this.currentVote == 1) {
-        this.currentScore--;
-        axios["delete"](window.location.href + "/vote");
+      this.addVote(1);
+    },
+    downvote: function downvote() {
+      this.addVote(-1);
+    },
+    addVote: function addVote(amount) {
+      if (this.currentVote == amount) {
+        this.currentScore -= this.currentVote;
+        axios["delete"](window.location.href + '/vote');
         this.currentVote = null;
       } else {
-        this.currentScore++;
-        axios.post(window.location.href + "/upvote");
-        this.currentVote = 1;
+        this.currentScore += this.currentVote ? amount * 2 : amount;
+        axios.post(window.location.href + (amount == 1 ? '/upvote' : '/downvote'));
+        this.currentVote = amount;
       }
-    },
-    downvote: function downvote() {}
+    }
   }
 });
 
@@ -37588,7 +37598,7 @@ var render = function() {
         },
         [_vm._v("+1")]
       ),
-      _vm._v("\n\n          Puntuación actual:"),
+      _vm._v("\n    Puntuación actual:\n    "),
       _c("strong", { attrs: { id: "current-score" } }, [
         _vm._v(_vm._s(_vm.currentScore))
       ]),
@@ -37596,11 +37606,12 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-light",
+          staticClass: "btn",
+          class: _vm.currentVote == -1 ? "btn-primary" : "btn-light",
           on: {
             click: function($event) {
               $event.preventDefault()
-              return _vm.upvote($event)
+              return _vm.downvote($event)
             }
           }
         },
