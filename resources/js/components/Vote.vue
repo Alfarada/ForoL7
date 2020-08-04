@@ -7,6 +7,7 @@
         :disabled="voteInProgress"
         class="btn"
       >+1</button>
+
       Puntuación actual:
       <strong id="current-score">{{ currentScore }}</strong>
 
@@ -45,7 +46,7 @@ export default {
         this.processRequest('delete','vote');
         this.currentVote = null;
       } else {
-        this.processRequest('post',(amount == 1 ? 'upvote' : 'downvote'));
+        this.processRequest('post','vote/' + amount);
         this.currentVote = amount;
       }
     },

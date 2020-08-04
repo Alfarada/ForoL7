@@ -1963,6 +1963,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["score", "vote"],
   data: function data() {
@@ -1986,7 +1987,7 @@ __webpack_require__.r(__webpack_exports__);
         this.processRequest('delete', 'vote');
         this.currentVote = null;
       } else {
-        this.processRequest('post', amount == 1 ? 'upvote' : 'downvote');
+        this.processRequest('post', 'vote/' + amount);
         this.currentVote = amount;
       }
     },
@@ -37616,7 +37617,7 @@ var render = function() {
         },
         [_vm._v("+1")]
       ),
-      _vm._v("\n    Puntuación actual:\n    "),
+      _vm._v("\n\n    Puntuación actual:\n    "),
       _c("strong", { attrs: { id: "current-score" } }, [
         _vm._v(_vm._s(_vm.currentScore))
       ]),

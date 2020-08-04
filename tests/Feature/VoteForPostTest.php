@@ -14,7 +14,7 @@ class VoteForPostTest extends TestCase
 
         $post = $this->createPost();
 
-        $this->post($post->url . '/upvote')
+        $this->post($post->url . '/vote/1')
             ->assertSuccessful()
             ->assertJson([
                 'new_score' => 1
@@ -36,7 +36,7 @@ class VoteForPostTest extends TestCase
 
         $post = $this->createPost();
 
-        $this->postJson($post->url . '/downvote')
+        $this->postJson($post->url . '/vote/-1')
             ->assertSuccessful()
             ->assertJson([
                 'new_score' => -1
@@ -85,7 +85,7 @@ class VoteForPostTest extends TestCase
         $user = $this->defaultUser();
         $post = $this->createPost();
 
-        $this->postJson("{$post->url}/upvote")
+        $this->postJson("{$post->url}/vote/1")
             ->assertStatus(401)
             ->assertJson(['message' => 'Unauthenticated.']);
  
