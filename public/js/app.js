@@ -1965,7 +1965,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["score", "vote"],
+  props: ['score', 'vote', 'post_id'],
   data: function data() {
     return {
       currentVote: this.vote ? parseInt(this.vote) : null,
@@ -1998,12 +1998,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.currentScore = response.data.new_score;
         _this.voteInProgress = false;
       })["catch"](function (trown) {
-        alert('Ocurrio un error!');
+        alert('Ocurrió un error!');
         _this.voteInProgress = false;
       });
     },
     buildUrl: function buildUrl(action) {
-      return window.location.href + '/' + action;
+      return '/posts/' + this.post_id + '/' + action;
     }
   }
 });

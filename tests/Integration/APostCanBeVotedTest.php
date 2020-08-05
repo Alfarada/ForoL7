@@ -6,27 +6,21 @@ use Tests\TestCase;
 class APostCanBeVotedTest  extends TestCase
 {
     //Usuario puede sumar un voto 
-    function test_a_user_can_be_upvoted()
+    function test_a_post_can_be_upvoted()
     {
-        $user = $this->defaultUser();
-
-        $this->actingAs($user);
+        $this->actingAs($user = $this->defaultUser());
         
         $post = $this->createPost();
 
         $post->upvote();
 
-        $this->assertDatabaseHas('votes', [
-            'post_id' => $post->id,
-            'user_id' => $user->id,
-            'vote' => 1
-        ]);
+        $this->assertSame(1, $post->current_vote);
 
         $this->assertSame(1, $post->score);
     }
 
     //Usuario no puede sumar votos por el mismo post dos veces
-    function test_a_user_cannot_be_upvoted_twice_by_the_same_user()
+    function test_a_post_cannot_be_upvoted_twice_by_the_same_user()
     {
         $user = $this->defaultUser();
 
@@ -44,7 +38,7 @@ class APostCanBeVotedTest  extends TestCase
     }
 
     //Usuario puede restar un voto
-    function test_a_user_can_be_downvoted()
+    function test_a_post_can_be_downvoted()
     {
         $this->actingAs($user = $this->defaultUser());
         
@@ -52,17 +46,13 @@ class APostCanBeVotedTest  extends TestCase
 
         $post->downvote();
 
-        $this->assertDatabaseHas('votes', [
-            'post_id' => $post->id,
-            'user_id' => $user->id,
-            'vote' => -1
-        ]);
+        $this->assertSame(-1, $post->current_vote); // or $post->getVoteFrom($user)
 
         $this->assertSame(-1, $post->score);
     }
 
     //Usuario no puede restar votos por el mismo post dos veces
-    function test_a_user_cannot_be_downvoted_twice_by_the_same_user()
+    function test_a_post_cannot_be_downvoted_twice_by_the_same_user()
     {
         $user = $this->defaultUser();
 
@@ -80,7 +70,7 @@ class APostCanBeVotedTest  extends TestCase
     }
 
     //Usuario puede cambiar su voto de positivo a negativo
-    function test_a_user_can_swicth_from_upvote_to_downvote()
+    function test_a_post_can_swicth_from_upvote_to_downvote()
     {
         $user = $this->defaultUser();
 
@@ -98,7 +88,7 @@ class APostCanBeVotedTest  extends TestCase
     }
 
     //Usuario puede cambiar su voto de negativo a positivo
-    function test_a_user_can_swicth_from_downvote_to_upvote()
+    function test_a_post_can_swicth_from_downvote_to_upvote()
     {
         $user = $this->defaultUser();
 
@@ -149,12 +139,27 @@ class APostCanBeVotedTest  extends TestCase
 
         $post->undoVote();
 
-        $this->assertDatabaseMissing('votes',[
-            'post_id' => $post->id,
-            'user_id' => $user->id,
-            'vote' => 1
-        ]);
+        $this->assertNull($post->current_vote);
 
         $this->assertSame(0, $post->score);
+    }
+
+    function test_get_vote_from_user_returns_the_vote_from_right_post()
+    {   
+        // Having
+        $this->actingAs($user = $this->defaultUser());
+
+        $post = $this->createPost();
+
+        $anotherPost = $this->createPost();
+
+        // When
+        $post->upvote();
+        
+        // Then
+        $this->assertSame(1, $post->getVoteFrom($user)); // or $post->current_vote
+
+        $this->assertNull($anotherPost->getVoteFrom($user));
+
     }
 }

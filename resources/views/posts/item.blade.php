@@ -9,6 +9,10 @@
             @else
                 <span class="badge badge-success"> Completado </span>
             @endif
+
+            {{-- AppVote Component --}}
+            
+            {!! $post->vote_component !!}
         </p>
         <hr>
 </article>

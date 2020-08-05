@@ -21,6 +21,7 @@
             ) !!}
             <button type="submit" class="btn btn-primary ml-3">Ordenar</button>
         {!! Form::close() !!}
+        {{-- View item.blade --}}
         @each('posts.item', $posts, 'post')
         {{ $posts->render() }}
     </div>

@@ -10,13 +10,13 @@ Route::post('posts/create', 'CreatePostController@store')
     ->name('posts.store');
 
 // Votes
-Route::post('/posts/{post}-{slug}/vote/1', 'VotePostController@upvote')
+Route::post('/posts/{post}/vote/1', 'VotePostController@upvote')
     ->where('post', '\d+');
 
-Route::post('/posts/{post}-{slug}/vote/-1', 'VotePostController@downvote')
+Route::post('/posts/{post}/vote/-1', 'VotePostController@downvote')
     ->where('post', '\d+');
 
-Route::delete('/posts/{post}-{slug}/vote', 'VotePostController@undoVote')
+Route::delete('/posts/{post}/vote', 'VotePostController@undoVote')
 ->where('post', '\d+');
 
 // Comments
