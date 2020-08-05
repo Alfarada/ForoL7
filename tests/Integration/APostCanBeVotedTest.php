@@ -115,8 +115,7 @@ class APostCanBeVotedTest  extends TestCase
         
         $post = $this->createPost();
 
-        Vote::create([
-            'post_id' => $post->id,
+        $post->votes()->create([
             'user_id' => $this->anyone()->id,
             'vote' => 1
         ]);
