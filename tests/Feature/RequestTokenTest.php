@@ -12,8 +12,6 @@ class RequestTokenTest extends FeatureTestCase
     //Un invitado puede solicitar un token
     public function test_a_guest_user_can_request_a_token()
     {
-        //$this->withExceptionHandling();
-
         //Having
         Mail::fake();
 
