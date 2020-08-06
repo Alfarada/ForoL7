@@ -12,7 +12,7 @@
 
             {{-- AppVote Component --}}
             
-            {!! $post->vote_component !!}
+            {!! $post->vote_component !!} 
         </p>
         <hr>
 </article>

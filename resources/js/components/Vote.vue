@@ -9,7 +9,7 @@
       >+1</button>
 
       Puntuación actual:
-      <strong id="current-score">{{ currentScore }}</strong>
+      <strong class="current-score">{{ currentScore }}</strong>
 
       <button
         @click.prevent="downvote"
@@ -23,14 +23,14 @@
 
 <script>
 export default {
-  props: ['score', 'vote','post_id'],
+  props: ['vote','score','id','module'],
   data() {
     return {
       currentVote: this.vote ? parseInt(this.vote) : null,
       currentScore: parseInt(this.score),
       voteInProgress: false
     };
-  },
+  }, 
   methods: {
     upvote() {
       this.addVote(1);
@@ -60,7 +60,7 @@ export default {
       });
     },
     buildUrl(action) {
-      return '/posts/' + this.post_id + '/' + action;
+      return '/' + this.module + '/' + this.id + '/' + action;
     }
   },
 };

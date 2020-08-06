@@ -3,8 +3,7 @@
 namespace Tests\Browser;
 
 use Laravel\Dusk\Browser;
-use Tests\DuskTestCase;
-use Tests\TestsHelper;
+use Tests\{DuskTestCase,TestsHelper};
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class VoteForPostTest extends DuskTestCase
@@ -21,7 +20,7 @@ class VoteForPostTest extends DuskTestCase
             $browser->loginAs($user)
                 ->visit($post->url)
                 ->pressAndWaitFor('+1')
-                ->assertSeeIn('#current-score', 1);
+                ->assertSeeIn('.current-score', 1);
 
         sleep(2);
         
@@ -45,7 +44,7 @@ class VoteForPostTest extends DuskTestCase
             $browser->loginAs($user)
                 ->visit($post->url)
                 ->pressAndWaitFor('-1')
-                ->assertSeeIn('#current-score', -1);
+                ->assertSeeIn('.current-score', -1);
 
         sleep(2);
         

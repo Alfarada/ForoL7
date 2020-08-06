@@ -1,6 +1,7 @@
 <?php 
 
 namespace App;
+
 use Collective\Html\HtmlFacade as Html;
 
 trait CanBeVoted
@@ -18,12 +19,16 @@ trait CanBeVoted
     }
 
     public function getVoteComponentAttribute()
-    {
-        return Html::tag('app-vote','', [
-            'post_id'=> $this->id,
-            'score'=> $this->score,
-            'vote'=> $this->current_vote
-        ]);
+    {   
+        if (auth()->check()) {
+            return Html::tag('app-vote','', [
+                'module' => $this->getTable(),
+                'id' => $this->id,
+                'score' => $this->score,
+                'vote' => $this->current_vote
+            ]);
+        }
+            
     }
 
     public function getVoteFrom(User $user)

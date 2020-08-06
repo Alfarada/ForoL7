@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\{Post, User};
+use App\{Post, User, Comment};
 
 trait TestsHelper
 {
@@ -20,6 +20,11 @@ trait TestsHelper
     protected function createPost(array $attributes = [])
     {
         return factory(Post::class)->create($attributes);
+    }
+
+    protected function createComment(array $attributes = [])
+    {
+        return factory(Comment::class)->create($attributes);
     }
 
     protected function anyone(array $attributes = [])

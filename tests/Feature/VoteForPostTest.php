@@ -14,8 +14,6 @@ class VoteForPostTest extends TestCase
 
         $post = $this->createPost();
 
-        //dd($post->url);
-
         $this->post("posts/{$post->id}/vote/1")
             ->assertSuccessful()
             ->assertJson([
