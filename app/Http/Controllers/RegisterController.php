@@ -18,6 +18,11 @@ class RegisterController extends Controller
 
         Token::generateFor($user)->sendByEmail();
 
+        return redirect('register-confirmation');
+    }
 
+    public function confirmation()
+    {
+        return view('register.confirmation');
     }
 }

@@ -11,8 +11,10 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        {!! Alert::render() !!}
-                        
+                        <div class="alert alert-success" role="alert">
+                            <p>'Gracias por registrarte, Te enviamos un enlace a tu correo para que inicies sesión'</p>
+                        </div>
+
                         {!! Field::email('email') !!}
 
                         {!! Field::text('username') !!}

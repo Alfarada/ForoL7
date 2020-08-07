@@ -46,12 +46,7 @@ class RegistrationTest extends FeatureTestCase
             return $mail->hasTo($user->email);
         });
 
-
-
-
         //Terminar
-        //$this->seeRouteIs('register_confirmation')
-        //    ->see('Gracias por registrarte')
-        //    ->see('Te enviamos un enlace para que inicies sesión');
+        $this->see('Gracias por registrarte, Te enviamos un enlace a tu correo para que inicies sesión');
     }
 }

@@ -37,7 +37,6 @@ class VoteForPostTest extends DuskTestCase
     public function test_a_user_can_downvote_for_a_post()
     {   
         $user = $this->defaultUser();
-
         $post = $this->createPost();
 
         $this->browse(function (Browser $browser) use ($user,$post) {

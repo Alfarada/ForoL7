@@ -4,6 +4,8 @@ Route::get('register', 'RegisterController@create')->name('register');
 
 Route::post('register', 'RegisterController@store');
 
+Route::get('register-confirmation', 'RegisterController@confirmation');
+
 Route::get('login', 'TokenController@create')->name('token');
 
 Route::post('login', 'TokenController@store');

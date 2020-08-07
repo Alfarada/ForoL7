@@ -12,7 +12,6 @@
                         @csrf
 
                         {!! Alert::render() !!}
-                        
                         {!! Field::email('email') !!}
 
                         <div class="form-group row mb-0">
