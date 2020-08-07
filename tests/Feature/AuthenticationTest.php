@@ -95,20 +95,20 @@ class AuthenticationTest extends FeatureTestCase
             ->see('Este enlace ya expiró, por favor solicite un nuevo token');
     }
 
-        //El token es sensible a minusculas
-        public function test_the_token_is_case_sensitive()
-        {
-            //Having
-            $user = $this->defaultUser([]);
-    
-            $token = Token::generateFor($user);
-    
-            //When
-            $this->visitRoute('login', ['token' => strtolower($token->token)]);
-    
-            //Then
-            $this->dontSeeIsAuthenticated()
-                ->seeRouteIs('token')
-                ->see('Este enlace ya expiró, por favor solicite un nuevo token');
-        }
+    //El token es sensible a minusculas
+    public function test_the_token_is_case_sensitive()
+    {
+        //Having
+        $user = $this->defaultUser([]);
+
+        $token = Token::generateFor($user);
+
+        //When
+        $this->visitRoute('login', ['token' => strtolower($token->token)]);
+
+        //Then
+        $this->dontSeeIsAuthenticated()
+            ->seeRouteIs('token')
+            ->see('Este enlace ya expiró, por favor solicite un nuevo token');
+    }
 }

@@ -9,3 +9,4 @@ Route::get('login', 'TokenController@create')->name('token');
 Route::post('login', 'TokenController@store');
 
 Route::get('login/{token}', 'LoginController@login')->name('login');
+

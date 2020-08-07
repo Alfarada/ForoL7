@@ -1,10 +1,13 @@
 <?php
 
-//Rutas que requieren autenticacion
-
-//Posts
 
 use App\{Post,Comment};
+
+// Rutas que requieren autenticacion
+
+// Logout
+
+Route::post('logout', 'Auth\LoginController@logout');
 
 Route::get('posts/create', 'CreatePostController@create')
     ->name('posts.create');

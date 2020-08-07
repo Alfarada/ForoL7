@@ -39,7 +39,7 @@ trait CanBeVoted
 
     public function getVoteFrom(User $user)
     {
-        return $this->votes
+        return $this->votes()
             ->where('user_id', $user->id)
             ->value('vote'); //+1, -1 and null
     }

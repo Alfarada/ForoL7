@@ -156,7 +156,7 @@ class APostCanBeVotedTest  extends TestCase
         $post->upvote();
         
         // Then
-        $this->assertSame(1, $post->getVoteFrom($user)); // or $post->current_vote
+        $this->assertSame(1, $post->current_vote); // or $post->current_vote
 
         $this->assertNull($anotherPost->getVoteFrom($user));
 

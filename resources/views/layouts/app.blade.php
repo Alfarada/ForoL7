@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Foro') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -39,12 +39,12 @@
                     <!-- Left Side Of Navbar -->
                     {!! Menu::make(trans('menu.main'))!!}
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto logout">
                         <!-- Authentication Links -->
                         
                             @if (Auth::guest())
                                 <li class="nav-item">
-                                    <li><a class="mx-5" href="{{ url('/login') }}">Login</a></li>
+                                    <li><a class="mx-5 login" href="{{ url('/login') }}">Login</a></li>
                                     <li><a href="{{ url('/register') }}">Register</a></li>
                                 </li>
                             @else
@@ -54,13 +54,13 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="#"
+                                        <a class="dropdown-item logout" href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
+                                           Logout
                                         </a>
 
-                                        <form id="logout-form" action="#" method="POST" style="display: none;">
+                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
                                     </div>
