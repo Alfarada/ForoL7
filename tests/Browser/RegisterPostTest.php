@@ -13,25 +13,18 @@ class RegisterPostTest extends DuskTestCase
 
     public function test_a_user_can_registered()
     {
-        $user = $this->defaultUser([
-            'email' => 'alfarada@example',
-            'username' => 'alfarada',
-            'first_name' => 'alfredo',
-            'last_name' => 'yepez'
-        ]);
-
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) {
             $browser->visit('/register')
                 ->assertSee('Register')
-                ->type('email',$user->email)
-                ->type('username',$user->name)
-                ->type('first_name',$user->first_name)
-                ->type('last_name',$user->last_name)
+                ->type('email','lorem@ipsum')
+                ->type('username','lorem')
+                ->type('first_name','lorem')
+                ->type('last_name','ipsum')
                 ->press('Regístrate');
 
             $this->assertDatabaseHas('users', [
-                'email' => $user->email,
-                'id' => $user->id
+                'email' => 'lorem@ipsum',
+                'username' => 'lorem'
             ]);
         });
     }

@@ -14,15 +14,19 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {   
+        $this->validate($request, [
+            'email' => ['required','email','unique:users,email'],
+            'username' => 'required|unique:users,username',
+            'first_name' => 'required',
+            'last_name' => 'required'
+        ]);
+
         $user = User::create($request->all());
 
         Token::generateFor($user)->sendByEmail();
 
-        return redirect('register-confirmation');
-    }
+        alert('Gracias por registrarte, Te enviamos un enlace a tu correo para que inicies sesión');
 
-    public function confirmation()
-    {
-        return view('register.confirmation');
+        return back();
     }
 }

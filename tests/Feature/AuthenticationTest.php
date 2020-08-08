@@ -2,11 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\Mail\TokenMail;
 use App\Token;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Tests\FeatureTestCase;
 use Illuminate\Support\Str;
 

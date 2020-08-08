@@ -11,8 +11,8 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <div class="alert alert-success" role="alert">
-                            <p>'Gracias por registrarte, Te enviamos un enlace a tu correo para que inicies sesión'</p>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Gracias por registrarte, Te enviamos un enlace a tu correo para que inicies sesión.</strong>
                         </div>
 
                         {!! Field::email('email') !!}
