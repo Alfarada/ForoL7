@@ -22,7 +22,7 @@ class LogoutTest extends DuskTestCase
             $browser->loginAs($user)
                 ->visit('/')
                 ->clickLink('Alfredo Yepez')
-                ->clickLink('Logout')
+                ->clickLink('Cerrar sesión')
                 ->assertGuest();
         });
     }

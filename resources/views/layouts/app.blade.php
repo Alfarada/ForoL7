@@ -54,10 +54,10 @@
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item logout" href="{{ url('/logout') }}"
+                                        <a class="dropdown-item" href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                           Logout
+                                           Cerrar sesión
                                         </a>
 
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
