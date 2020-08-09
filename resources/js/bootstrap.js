@@ -11,7 +11,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
-} catch (e) {}
+} catch (e) { }
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -23,6 +23,26 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+// Add a request interceptor
+axios.interceptors.response.use(function (response) {
+
+    return response;
+
+}, function (error) {
+
+    const unauthorized = error.response.status == 401;
+    
+    unauthorized ? redirect('login') : capture(error);
+
+});
+
+function redirect(url) {
+    return window.location.replace(url);
+}
+
+function capture(error) {
+    return Promise.reject(error);
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
