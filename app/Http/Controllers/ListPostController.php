@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class ListPostController extends Controller
 {   
-    public function __invoke(Category $category  , Request $request)
-    {  
+    public function __invoke(Category $category = null, Request $request)
+    {   
         list($orderColumn, $orderDirection) = $this->getListOrder($request->get('orden'));
 
         $posts = Post::query()

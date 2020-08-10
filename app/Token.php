@@ -44,7 +44,7 @@ class Token extends Model
     public function login()
     {
         Auth::login($this->user, true);
-
+        
         $this->delete();
     }
 
