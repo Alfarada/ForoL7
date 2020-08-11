@@ -18,14 +18,15 @@
                     {!! Field::select('category_id', $categories, ['empty' => false]) !!}
 
                     <div class="form-group row mb-0">
-                        <div class="col-md-6 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                Publicar
-                            </button>
+                        <div class="col text-center">
+
+                            {!! Form::submit('Publicar',['class' => 'btn btn-primary']) !!}
+
                         </div>
                     </div>
-
+                    
                     {!! Form::close() !!}
+                    
                 </div>
             </div>
         </div>
