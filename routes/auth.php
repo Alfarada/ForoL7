@@ -7,7 +7,7 @@ use App\{Post,Comment};
 
 // Logout
 
-Route::post('logout', 'Auth\LoginController@logout');
+Route::post('logout', 'LoginController@logout');
 
 Route::get('posts/create', 'CreatePostController@create')
     ->name('posts.create');

@@ -12,6 +12,9 @@
 <div class="row">
     @include('posts.sidebar')
     <div class="col-md-10">
+
+        {!! Alert::render() !!}
+
         {!! Form::open(['method' => 'get', 'class' => 'form form-inline']) !!}
             {!! Form::select(
                 'orden',
@@ -21,9 +24,11 @@
             ) !!}
             <button type="submit" class="btn btn-primary ml-3">Ordenar</button>
         {!! Form::close() !!}
+        
         {{-- View item.blade --}}
         @each('posts.item', $posts, 'post')
         {{ $posts->render() }}
+        
     </div>
 </div>
 

@@ -34,4 +34,5 @@ class WriteCommentTest extends FeatureTestCase
 
         $this->seePageIs($post->url);
     }
+
 }
