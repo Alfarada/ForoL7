@@ -15,7 +15,7 @@
 
                     {!! Field::textarea('content') !!}
 
-                    {!! Field::select('category_id', $categories ) !!}
+                    {!! Field::select('category_id', $categories, ['empty' => false]) !!}
 
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">

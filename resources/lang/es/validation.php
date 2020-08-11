@@ -182,5 +182,6 @@ return [
         'content'               => 'contenido',
         'username'              => 'usuario',
         'year'                  => 'año',
+        'category_id'           => 'Categoría'
     ],
 ];
